@@ -5,16 +5,18 @@
 The following files contain sensitive information and should **NEVER** be committed to version control:
 
 ### 🚫 Files to NEVER commit:
-- `.env` files (contains secrets, API keys, database URLs)
-- `node_modules/` (contains dependencies)
-- `build/` and `dist/` folders (compiled code)
-- Log files (`*.log`)
-- Database files (`*.sqlite`, `*.db`)
-- IDE files (`.vscode/`, `.idea/`)
+
+-   `.env` files (contains secrets, API keys, database URLs)
+-   `node_modules/` (contains dependencies)
+-   `build/` and `dist/` folders (compiled code)
+-   Log files (`*.log`)
+-   Database files (`*.sqlite`, `*.db`)
+-   IDE files (`.vscode/`, `.idea/`)
 
 ## ✅ Safe Setup Steps
 
 ### 1. Environment Variables
+
 ```bash
 # Copy the example file
 cd server
@@ -25,6 +27,7 @@ nano .env  # or use your preferred editor
 ```
 
 ### 2. Database Setup
+
 ```bash
 # For local MongoDB
 mongod
@@ -33,6 +36,7 @@ mongod
 ```
 
 ### 3. Generate Strong Secrets
+
 ```bash
 # Generate JWT secret (32+ characters)
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
@@ -43,33 +47,36 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ## 🔐 Environment Variables Explained
 
 ### Required:
-- `DB_URI`: MongoDB connection string
-- `PORT`: Server port (default: 5000)
-- `NODE_ENV`: Environment (development/production)
-- `JWT_SECRET`: Secret for JWT tokens (MUST be strong)
-- `API_KEY`: API authentication key
+
+-   `DB_URI`: MongoDB connection string
+-   `PORT`: Server port (default: 5000)
+-   `NODE_ENV`: Environment (development/production)
+-   `JWT_SECRET`: Secret for JWT tokens (MUST be strong)
+-   `API_KEY`: API authentication key
 
 ### Optional:
-- `CORS_ORIGIN`: Allowed frontend URLs
-- `RATE_LIMIT_*`: API rate limiting settings
-- `EMAIL_*`: Email service configuration
+
+-   `CORS_ORIGIN`: Allowed frontend URLs
+-   `RATE_LIMIT_*`: API rate limiting settings
+-   `EMAIL_*`: Email service configuration
 
 ## 🛡️ Production Security Checklist
 
-- [ ] Use strong, unique secrets (32+ characters)
-- [ ] Use environment variables for all secrets
-- [ ] Enable HTTPS in production
-- [ ] Use MongoDB Atlas or secure database hosting
-- [ ] Enable rate limiting
-- [ ] Validate all input data
-- [ ] Use CORS properly
-- [ ] Keep dependencies updated
-- [ ] Use security headers
-- [ ] Enable logging and monitoring
+-   [ ] Use strong, unique secrets (32+ characters)
+-   [ ] Use environment variables for all secrets
+-   [ ] Enable HTTPS in production
+-   [ ] Use MongoDB Atlas or secure database hosting
+-   [ ] Enable rate limiting
+-   [ ] Validate all input data
+-   [ ] Use CORS properly
+-   [ ] Keep dependencies updated
+-   [ ] Use security headers
+-   [ ] Enable logging and monitoring
 
 ## 📋 Git Best Practices
 
 ### Before first commit:
+
 ```bash
 # Check what will be committed
 git status
@@ -84,6 +91,7 @@ git commit -m "Initial project setup"
 ```
 
 ### If you accidentally committed secrets:
+
 ```bash
 # Remove from history (USE WITH CAUTION)
 git filter-branch --force --index-filter \
@@ -95,6 +103,7 @@ git push origin --force --all
 ```
 
 ## 🔍 Check for exposed secrets:
+
 ```bash
 # Search for potential secrets in code
 grep -r "password\|secret\|key\|token" . --exclude-dir=node_modules
@@ -106,6 +115,7 @@ grep -r "password\|secret\|key\|token" . --exclude-dir=node_modules
 ```
 
 ## 📝 Example .env structure:
+
 ```env
 # ✅ Good - using placeholder values
 DB_URI=mongodb://localhost:27017/dockerapp
