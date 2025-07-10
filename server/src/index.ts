@@ -54,6 +54,18 @@ let users = [
 ];
 
 // Routes
+
+app.get('/', (req, res) => {
+    res.json({
+        success: true,
+        message: 'Welcome to the Docker App API',
+        timestamp: new Date().toISOString(),
+        environment: process.env.NODE_ENV || 'development',
+    });
+});
+  
+
+
 app.get('/ping', (req, res) => {
     res.json({
         success: true,
